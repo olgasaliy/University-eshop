@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+
+
+  <welcome-file-list>
+    <welcome-file>faces/index.xhtml</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.xhtml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+    <param-value>true</param-value>
+  </context-param>
+
+
+  <!--<servlet>-->
+    <!--<servlet-name>javax.ws.rs.core.Application</servlet-name>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+  <!--</servlet>-->
+
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>javax.ws.rs.core.Application</servlet-name>-->
+    <!--<url-pattern>/services/*</url-pattern>-->
+  <!--</servlet-mapping>-->
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.faces</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>eshopRealm</realm-name>
+    <form-login-config>
+      <form-login-page>/login.xhtml</form-login-page>
+      <form-error-page>/error.xhtml</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Защищённые страницы</web-resource-name>
+      <description>Админка</description>
+      <description/>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>ADMINS</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Приватное</web-resource-name>
+      <description>Профиль</description>
+      <url-pattern>/customer/View.xhtml</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>USERS</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>публичное</web-resource-name>
+      <url-pattern>/index.xhtml</url-pattern>
+      <url-pattern>/login.xhtml</url-pattern>
+      <url-pattern>/Create.xhtml</url-pattern>
+      <url-pattern>/product/ListCategory.xhtml</url-pattern>
+    </web-resource-collection>
+    <!-- No auth-constraint means everybody has access! -->
+  </security-constraint>
+<error-page>
+  <location>/error.xhtml</location>
+</error-page>
+  <!--<security-constraint>-->
+    <!--<web-resource-collection>-->
+      <!--<web-resource-name>Приват</web-resource-name>-->
+      <!--<url-pattern>/product/List.xhtml</url-pattern>-->
+    <!--</web-resource-collection>-->
+    <!--<auth-constraint/>-->
+  <!--</security-constraint>-->
+</web-app>

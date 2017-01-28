@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Заказы"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form> 
+                <h:outputText rendered="#{userController.authenticatedUser == null}" value="Войдите в систему для просмотра заказов" ></h:outputText>
+                <h:dataTable value="#{customerOrderController.myOrders}" var="item" rowClasses="firstRow, secondRow" rendered="#{userController.authenticatedUser != null}" >
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Статус"/>
+                        </f:facet>
+
+                        <h:outputText value="#{item.orderStatus.status}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Описание"/>
+                        </f:facet>
+                        <h:outputText value="#{item.orderStatus.description}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Общая стоимость"/>
+                        </f:facet>
+                        <h:outputText value="#{item.amount}">
+                            <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Дата оформления"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dateCreated}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Товары"/>
+                        </f:facet>
+                                <ui:repeat value="#{item.orderDetailList}" var="o">
+                                    <li><h:outputText value = "#{o.product.name} " /></li>
+                                </ui:repeat>
+
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

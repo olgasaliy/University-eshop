@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <f:metadata>
+            <f:viewParam name="categoryId" value="#{productController.categoryId}" />
+        </f:metadata>
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:outputText escape="false" value="#{bundle.ListProductEmpty}" rendered="#{productController.countItems == 0}"/>
+                <h:panelGroup rendered="#{productController.countItems> 0}">
+                    <ul class="commandButtons">
+
+                        <li><h:commandLink action="#{productController.prepareCreate}" value="Добавить новый товар">
+                            </h:commandLink></li>
+                    </ul>
+                    <h:dataTable value="#{productController.allItems}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="firstRow, secondRow" rules="all">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_price}"/>
+
+
+                            </f:facet>
+                            <h:outputText value="#{item.price}">
+                                <f:convertNumber type="currency" currencySymbol="$" locale="en_US"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductTitle_category}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.category.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{productController.prepareView(item)}" value="#{bundle.ListProductViewLink}"></h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{productController.destroy(item)}" value="#{bundle.ListProductDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <ul class="commandButtons">
+                        <li><h:commandLink action="/admin/index.xhtm" value="Назад"/></li>
+                    </ul>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

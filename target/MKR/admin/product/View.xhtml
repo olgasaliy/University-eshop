@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:custom="http://java.sun.com/jsf/composite/custom">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProductTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProductLabel_id}"/>
+                    <h:outputText  value="#{productController.current.id}" title="#{bundle.ViewProductTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_name}"/>
+                    <h:outputText value="#{productController.current.name}" title="#{bundle.ViewProductTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_price}"/>
+                    <h:outputText value="#{productController.current.price}" title="#{bundle.ViewProductTitle_price}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_description}"/>
+                    <h:outputText value="#{productController.current.description}" title="#{bundle.ViewProductTitle_description}"/>
+                    <h:outputText value="#{bundle.ViewProductLabel_category}"/>
+                    <h:outputText value="#{productController.current.category}" title="#{bundle.ViewProductTitle_category}"/>
+                </h:panelGrid>
+
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{productController.destroy}" value="Удалить">
+                        <f:param name="id" value="#{productController.current.id}"/>
+                    </h:commandLink></li>
+
+                    <li><h:commandLink action="#{productController.prepareCreate}" value="Добавить новый товар" /></li>
+                    <li><h:commandLink action="#{productController.prepareList}" value="Показать все товары"/></li>
+                </ul>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

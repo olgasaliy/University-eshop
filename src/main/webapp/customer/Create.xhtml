@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Регистрация"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Имя" for="firstname" />
+                    <h:inputText id="firstname" value="#{customerController.selected.firstname}"  required="true" />
+                    <h:outputLabel value="Фамилия" for="lastname" />
+                    <h:inputText id="lastname" value="#{customerController.selected.lastname}"  required="true" />
+                    <h:outputLabel value="Email" for="email" />
+                    <h:inputText id="email" value="#{customerController.selected.email}"  required="true" />
+                    <h:outputLabel value="Адрес" for="address" />
+                    <h:inputText id="address" value="#{customerController.selected.address}"  required="true" />
+                    <h:outputLabel value="Город" for="city" />
+                    <h:inputText id="city" value="#{customerController.selected.city}"  required="true" />
+                    <h:outputLabel value="Пароль" for="password" />
+                    <h:inputSecret id="password" value="#{customerController.selected.password}"  required="true" />
+
+                </h:panelGrid>
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{customerController.create}" actionListener="#{shoppingCartController.clear}" value="Зарегистрироваться" /></li>
+                    <li><h:commandLink action="/index.xhtml" value="Отмена" immediate="true" /></li>
+                </ul>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

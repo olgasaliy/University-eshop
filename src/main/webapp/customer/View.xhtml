@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Профиль"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{userController.authenticatedUser.id}" title="ID"/>
+                    <h:outputText value="Имя"/>
+                    <h:inputText value="#{userController.authenticatedUser.firstname}" title="Имя"/>
+                    <h:outputText value="Фамилия"/>
+                    <h:inputText value="#{userController.authenticatedUser.lastname}" title="Фамилия"/>
+                    <h:outputText value="Email"/>
+                    <h:inputText value="#{userController.authenticatedUser.email}" title="Email"/>
+                    <h:outputText value="Адрес"/>
+                    <h:inputText value="#{userController.authenticatedUser.address}" title="Адрес"/>
+                    <h:outputText value="Город"/>
+                    <h:inputText value="#{userController.authenticatedUser.city}" title="Город"/>
+                    <h:outputText value="Пароль"/>
+                    <h:inputSecret value="#{userController.authenticatedUser.password}" title="Город"/>
+                </h:panelGrid>
+                <h:commandButton value="Сохранить" action="#{customerController.edit}">
+
+                </h:commandButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:custom="http://java.sun.com/jsf/composite/custom">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAdministratorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{administratorController.selected.firstname}" title="#{bundle.CreateAdministratorTitle_firstname}" required="true" />
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{administratorController.selected.lastname}" title="#{bundle.CreateAdministratorTitle_lastname}" required="true" />
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{administratorController.selected.email}" title="#{bundle.CreateAdministratorTitle_email}" required="true" />
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{administratorController.selected.address}" title="#{bundle.CreateAdministratorTitle_address}" required="true" />
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{administratorController.selected.city}" title="#{bundle.CreateAdministratorTitle_city}" required="true" />
+                    <h:outputLabel value="#{bundle.CreateAdministratorLabel_password}" for="password" />
+                    <h:inputSecret id="password" value="#{administratorController.selected.password}" title="#{bundle.CreateAdministratorTitle_password}" required="true" />
+                </h:panelGrid>
+
+                <ul class="commandButtons">
+                    <li><h:commandLink action="#{administratorController.create}" value="Сохранить" /></li>
+                    <li><h:commandLink action="#{administratorController.prepareList}" value="Посмотреть весь список" immediate="true"/></li>
+                    <li><h:commandLink action="List" value="Назад" immediate="true"/></li>
+                </ul>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
